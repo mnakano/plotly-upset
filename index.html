@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> 
+        <script src='upset-plotly.js'></script>
+    </head>
+    <body>
+        <div style='width:80%;'>
+            <div id='bar' style="width:3500px; height:250px;"></div>
+            <div id='scatter' style="width:3500px; height:250px;"></div>
+        </div>
+        <script>
+            const sets = ["set1", "set2", "set3", "set4", "set5", "set6", "set7", "set8", "set9", "set10", "set11"]
+            const items = [
+                            ["a","b","c","d"],
+                            ["a","b","c","d", "e", "f"],
+                            ["a","b","g", "h", "i"],
+                            ["a","i", "j","c","d"],
+                            ["a","b","c","d"],
+                            ["a","b","c","d", "e", "f"],
+                            ["a","b","g", "h", "i"],
+                            ["a","i", "j","c","d"],
+                            ["a","b","c","d"],
+                            ["a","b","c","d", "e", "f"],
+                            ["a","b","c","d", "e", "f"]
+                        ]
+            
+            let intersections = makeUpset(sets, items)
+            const plotData = getPlotData(intersections, sets)
+
+            const BAR = document.getElementById('bar')
+            const SCATTER = document.getElementById('scatter')
+            Plotly.newPlot(BAR, plotData.bars, getBarLayout(plotData.bars.length))
+            Plotly.newPlot(SCATTER, plotData.points, getPointLayout(plotData.points.length))
+        </script>
+    </body>    
+</html>
